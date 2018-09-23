@@ -4,11 +4,7 @@
         English ??? {{ checked }}
         <div v-if="checked">Hello World</div>
         <div v-else>Bonjour le monde</div>
-
-        <template v-if="checked">
-            <p>In the template</p>
-        </template>
-
+        <p v-show="checked">In the template</p>
     </div>
 </template>
 
