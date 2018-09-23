@@ -1,10 +1,8 @@
 <template>
     <div>
-        <input type="checkbox" v-model="checked">
-        English ??? {{ checked }}
-        <div v-if="checked">Hello World</div>
-        <div v-else>Bonjour le monde</div>
-        <p v-show="checked">In the template</p>
+        <ul>
+            <li v-for="(game,i) in games" v-bind:key="i">{{ game }} - {{ i }}</li>
+        </ul>
     </div>
 </template>
 
@@ -12,7 +10,19 @@
   export default {
     data: function () {
       return {
-        checked: 'true'
+        games: ['Mario', 'Zelda', 'Final Fantasy'],
+        support: [
+          {
+            name: 'Nintendo',
+            country: 'JPN',
+            type: 'children'
+          },
+          {
+            name: 'Nintendo',
+            country: 'JPN',
+            type: 'children'
+          }
+        ]
       };
     }
   };
