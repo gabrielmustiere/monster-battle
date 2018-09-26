@@ -1,0 +1,18 @@
+{
+  "extends": [ "plugin:vue/recommended"],
+  "rules": {
+    "import/no-unresolved": 0,
+    "import/no-unassigned-import": 0,
+    "block-spacing": "off",
+    "semi": "off",
+    "no-console": "off",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "always",
+        "asyncArrow": "always"
+      }
+    ]
+  }
+}
