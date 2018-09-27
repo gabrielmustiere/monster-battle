@@ -72,7 +72,7 @@
               class="btn btn-lg btn-danger mx-3"
               @click="attack()">Attaquer</button>
             <button
-              class="btn btn-lg btn-warning mx-3" 
+              class="btn btn-lg btn-warning mx-3"
               @click="specialAttack()">Attaque spécial</button>
             <button
               class="btn btn-lg btn-success mx-3"
@@ -108,11 +108,13 @@
 </template>
 
 <script>
-const ATTAQUE = "ATTAQUE";
-const HEAL = "HEAL ";
-const SPECIAL_ATTAQUE = "ATTAQUE SPéCIALE";
+const ATTAQUE = "ATTAQUE"
+const HEAL = "HEAL "
+const SPECIAL_ATTAQUE = "ATTAQUE SPéCIALE"
+
 export default {
-  data: function () {
+  data:  () => {
+
     return {
       isBattle: false,
       maxLife: 100,
@@ -128,32 +130,37 @@ export default {
       currentCharacter: null,
       turns: []
     }
-
-
   },
+
   methods: {
+
     beginBattle: function () {
-      this.player.currentLife = 100;
-      this.monster.currentLife = 100;
-      this.currentCharacter = this.player;
+      this.player.currentLife = 100
+      this.monster.currentLife = 100
+      this.currentCharacter = this.player
       this.isBattle = true
     },
+
     giveUpBattle: function () {
-      this.player.currentLife = 0;
-      this.monster.currentLife = 0;
-      this.isBattle = false;
-      this.currentCharacter = this.player;
+      this.player.currentLife = 0
+      this.monster.currentLife = 0
+      this.isBattle = false
+      this.currentCharacter = this.player
       this.turns = []
     },
+
     getRandomValue () {
       return Math.floor(Math.random() * Math.floor(20))
     },
+
     getRandomAttackValue () {
       return this.getRandomValue()
     },
+
     getRandomAttackSpecialValue () {
       return Math.round(this.getRandomAttackValue() * 1.5)
     },
+
     getHealValue () {
       return Math.round(this.getRandomValue() * 0.8)
     },
@@ -164,9 +171,11 @@ export default {
         this.getOpponent(this.currentCharacter),
         ATTAQUE,
         this.getRandomAttackValue()
-      );
-      this.applyTurn(turn);
-      this.logTurn(turn);
+      )
+      let toto = 'toto';
+
+      this.applyTurn(turn)
+      this.logTurn(turn)
       this.switchCharacter()
     },
 
@@ -176,22 +185,23 @@ export default {
         this.getOpponent(this.currentCharacter),
         SPECIAL_ATTAQUE,
         this.getRandomAttackSpecialValue()
-      );
-      this.applyTurn(turn);
-      this.logTurn(turn);
+      )
+
+      this.applyTurn(turn)
+      this.logTurn(turn)
       this.switchCharacter()
     },
     heal () {
-      let turn = this.getTurnElement(this.currentCharacter, this.currentCharacter, HEAL, this.getHealValue());
-      this.applyTurn(turn);
-      this.logTurn(turn);
+      let turn = this.getTurnElement(this.currentCharacter, this.currentCharacter, HEAL, this.getHealValue())
+
+      this.applyTurn(turn)
+      this.logTurn(turn)
       this.switchCharacter()
     },
 
     switchCharacter () {
       if (this.currentCharacter === this.player) {
         this.currentCharacter = this.monster
-        //TODO RANDOM ACTION
       } else {
         this.currentCharacter = this.player
       }
@@ -212,18 +222,20 @@ export default {
         value: value
       }
     },
+
     applyTurn (turn) {
       switch (turn.actionType) {
         case ATTAQUE:
         case SPECIAL_ATTAQUE: {
-          turn.opponent.currentLife -= turn.value;
+          turn.opponent.currentLife -= turn.value
           break
         }
         case HEAL:
-          turn.character.currentLife += turn.value;
+          turn.character.currentLife += turn.value
           break
       }
     },
+
     logTurn (turn) {
       this.turns.unshift(turn)
     }
